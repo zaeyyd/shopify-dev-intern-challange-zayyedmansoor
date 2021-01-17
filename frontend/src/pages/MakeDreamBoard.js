@@ -3,7 +3,7 @@ import React from 'react'
 export default function MakeDreamBoard() {
     return (
         <div>
-            Make A Dream Board
+            <h2>Make A Dream Board</h2>
         </div>
     )
 }

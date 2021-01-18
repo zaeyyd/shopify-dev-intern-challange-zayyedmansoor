@@ -6,17 +6,18 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
-var firebaseConfig = {
-  apiKey: "AIzaSyC3jhNrtekRiyOc0ctbaGCW4c3J8--tqB8",
-  authDomain: "se3316-zmansoo2-lab5.firebaseapp.com",
-  projectId: "se3316-zmansoo2-lab5",
-  storageBucket: "se3316-zmansoo2-lab5.appspot.com",
-  messagingSenderId: "203249425129",
-  appId: "1:203249425129:web:25bf5c4853efefcce42e78",
-  measurementId: "G-EMXK75LHQV",
-};
 const firebase = require("firebase");
-firebase.initializeApp(firebaseConfig);
+
+
+firebase.initializeApp({
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
+  })
 
 //UTIL
 const bodyParser = require("body-parser");

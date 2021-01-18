@@ -29,19 +29,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-//MongoDB Stuff
-const mongoose = require("mongoose");
-const connection = require("./connection");
-const Classes = require("./models/Classes");
-const ClassesModel = mongoose.model("classes");
-const Schedules = require("./models/Schedules");
-const SchedulesModel = mongoose.model("schedules");
-const Users = require("./models/Users");
-const { decode } = require("firebase-functions/lib/providers/https");
-const UsersModel = mongoose.model("users");
 
 
-const stringSimilarity = require('string-similarity');
+
 
 //AUTH MIDDLEWARE
 
@@ -65,18 +55,7 @@ const authMid = (req, res, next) => {
     .then((decodedToken) => {
       req.user = decodedToken;
 
-      UsersModel.findOne({ userID: decodedToken.uid }, (err, doc) => {
-        if (doc) {
-          console.log("here");
-
-          req.user.admin = doc.admin;
-          req.user.active = doc.active;
-
-          return next();
-        } else {
-          return res.status(404).send("no schedule with that name");
-        }
-      });
+     
     })
 
     .catch((err) => {

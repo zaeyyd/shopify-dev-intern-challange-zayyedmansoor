@@ -3,7 +3,7 @@
 
 ### GIF (placeholder)
 
-### LIVE LINK
+### LIVE LINK https://shopify-s21-intern-challenge.firebaseapp.com/
 
 ### TECHNOLOGIES USED
 - React

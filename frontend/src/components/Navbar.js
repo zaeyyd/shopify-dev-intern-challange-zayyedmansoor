@@ -2,67 +2,77 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import "../components/Navbar.css";
 import { Button, Typography } from "@material-ui/core";
+import { useAuth } from "../contexts/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   bar: {
-    color: "grey",
-    border: "5px solid #00d604",
-    borderRadius: "40px",
-    padding: 5,
+    borderRadius: "20px",
+    padding: 15,
+    backgroundColor: "rgb(0, 67, 54)",
+    width: "80vw",
   },
 
   barButton: {
     borderRadius: "20px",
-    margin: 5,
+    margin: 10,
     fontFamily:
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-    fontWeight: "bold",
-    backgroundColor: "white",
-    color: "black",
+
+    color: "rgb(250, 246, 234)",
     "&:hover": {
-      color: "white",
-      backgroundColor: "#00d604",
+      backgroundColor: "rgb(6, 139, 57)",
     },
   },
 
   name: {
     fontFamily:
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-    fontWeight: "bold",
-    color: "#00d604",
+
+    color: "rgb(250, 246, 234)",
+    "&:hover": {
+      fontWeight: "bold",
+    },
   },
 
-  logo:{ 
+  logo: {
     borderRadius: "20px",
-    "&:hover": {
-        backgroundColor: "#FFFFFF",
-      },
-  }
-
+  },
 }));
 
 export default function Navbar() {
   const classes = useStyles();
-
+  const { currentUser } = useAuth();
 
   return (
     <div className={classes.bar}>
-      <Button
-        className={classes.logo}
-        to="/"
-      >
-
+      <Button className={classes.logo} to="/">
         <Typography variant="h4" className={classes.name}>
-          DREAMBOARDIFY
+          DREAMBOARDIFY ✨
         </Typography>
-
       </Button>
 
-
-      <Button href="/" className={classes.barButton}>Dashboard</Button>
-      <Button href="/signin" className={classes.barButton}>Sign In</Button>
-      <Button href="/signup" className={classes.barButton}>Sign Up</Button>
-      <Button href="/makedreamboard" className={classes.barButton}>Make A Dream Board 😃</Button>
+      <div style={{ float: "right" }}>
+        {currentUser ? (
+          <>
+            <Button href="/" className={classes.barButton}>
+              Dashboard
+            </Button>
+            <Button href="/makedreamboard" className={classes.barButton}>
+              Make A Dream Board 😃
+            </Button>{" "}
+          </>
+        ) : (
+          <>
+            {" "}
+            <Button href="/signin" className={classes.barButton}>
+              Sign In
+            </Button>
+            <Button href="/signup" className={classes.barButton}>
+              Sign Up
+            </Button>{" "}
+          </>
+        )}
+      </div>
     </div>
   );
 }
